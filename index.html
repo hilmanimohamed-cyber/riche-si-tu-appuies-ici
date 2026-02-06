@@ -83,15 +83,26 @@ button{
     opacity:0;
   }
 }
+
+/* IFRAME FINAL */
+#finalFrame{
+  display:none;
+  position:fixed;
+  inset:0;
+  border:none;
+  width:100vw;
+  height:100vh;
+  z-index:5;
+}
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<div class="card" id="card">
 
   <!-- GIF D’ENTRÉE -->
-  <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="love gif">
+  <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="love gif">
 
   <h1>💌 Kenza…</h1>
   <p>Accepterais-tu d’être ma Valentine ?</p>
@@ -103,13 +114,21 @@ button{
 
   <!-- GIF FINAL -->
   <img class="final-gif" id="finalGif"
-       src="https://media.giphy.com/media/l4FGpP4lxGGgK5CBW/giphy.gif"
-       alt="love explosion">
+       src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"
+       alt="love reaction">
 
   <!-- MESSAGE FINAL -->
-  <div class="msg" id="msg">hâte de te voir sguigui3a je t’aime ❤️</div>
+  <div class="msg" id="msg">
+    hâte de te voir sguigui3a je t’aime ❤️
+  </div>
 
 </div>
+
+<!-- PAGE INTÉGRÉE -->
+<iframe 
+  id="finalFrame"
+  src="https://hilmanimohamed-cyber.github.io/riche-si-tu-appuies-ici/">
+</iframe>
 
 <script>
 const yesBtn = document.getElementById("yes");
@@ -117,6 +136,8 @@ const noBtn  = document.getElementById("no");
 const stage  = document.getElementById("stage");
 const msg    = document.getElementById("msg");
 const finalGif = document.getElementById("finalGif");
+const frame = document.getElementById("finalFrame");
+const card = document.getElementById("card");
 
 let clicks = 0;
 let scale = 1;
@@ -151,7 +172,7 @@ function launchConfetti(){
   }
 }
 
-/* Bouton OUI */
+/* Bouton OUI – 3 clics */
 yesBtn.addEventListener("click", ()=>{
   clicks++;
   scale += 0.35;
@@ -163,6 +184,11 @@ yesBtn.addEventListener("click", ()=>{
     launchConfetti();
     yesBtn.disabled = true;
     noBtn.disabled = true;
+
+    setTimeout(()=>{
+      card.style.display = "none";
+      frame.style.display = "block";
+    }, 2500);
   }
 });
 
